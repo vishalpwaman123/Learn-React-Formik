@@ -20,12 +20,6 @@ const validationSchema = Yup.object({
     .required("Age is required"),
 });
 
-const validateComments = (value) => {
-  let error;
-  if (!value) error = "Comment is required";
-  return error;
-};
-
 function ComponentB() {
   console.log("Component B Render");
 
@@ -37,72 +31,60 @@ function ComponentB() {
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
-          <Form>
-            <div className="mb-3">
-              <label htmlFor="firstName" className="form-label">
-                First Name
-              </label>
-              <Field
-                type="text"
-                className="form-control"
-                id="firstName"
-                name="firstName"
-              />
-              <ErrorMessage
-                name="firstName"
-                component="span"
-                className="error"
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="lastName" className="form-label">
-                Last Name
-              </label>
-              <Field
-                type="text"
-                className="form-control"
-                id="lastName"
-                name="lastName"
-              />
-              <ErrorMessage
-                name="lastName"
-                component="span"
-                className="error"
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="age" className="form-label">
-                Age
-              </label>
-              <Field
-                type="number"
-                className="form-control"
-                id="age"
-                name="age"
-              />
-              <ErrorMessage name="age" component="span" className="error" />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="comments" className="form-label">
-                Comments
-              </label>
-              <Field
-                as="textarea"
-                className="form-control"
-                id="comments"
-                name="comments"
-                validate={validateComments}
-              />
-              <ErrorMessage
-                name="comments"
-                component="span"
-                className="error"
-              />
-            </div>
-            <button className="btn btn-primary" type="submit">
-              Submit
-            </button>
-          </Form>
+          {(formik) => {
+            console.log("Parent Formik : ", formik);
+            return (
+              <Form>
+                <div className="mb-3">
+                  <label htmlFor="firstName" className="form-label">
+                    First Name
+                  </label>
+                  <Field
+                    type="text"
+                    className="form-control"
+                    id="firstName"
+                    name="firstName"
+                  />
+                  <ErrorMessage
+                    name="firstName"
+                    component="span"
+                    className="error"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="lastName" className="form-label">
+                    Last Name
+                  </label>
+                  <Field
+                    type="text"
+                    className="form-control"
+                    id="lastName"
+                    name="lastName"
+                  />
+                  <ErrorMessage
+                    name="lastName"
+                    component="span"
+                    className="error"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="age" className="form-label">
+                    Age
+                  </label>
+                  <Field
+                    type="number"
+                    className="form-control"
+                    id="age"
+                    name="age"
+                  />
+                  <ErrorMessage name="age" component="span" className="error" />
+                </div>
+                <button className="btn btn-primary" type="submit">
+                  Submit
+                </button>
+              </Form>
+            );
+          }}
         </Formik>
       </div>
     </div>
