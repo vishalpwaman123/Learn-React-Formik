@@ -29,8 +29,11 @@ const initialValues = {
   age: 0,
   comments: "",
 };
-const onSubmit = (value) => {
+const onSubmit = (value, onSubmitProps) => {
   console.log(value);
+  console.log(onSubmitProps);
+  onSubmitProps.setSubmitting(false);
+  onSubmitProps.resetForm();
 };
 
 const validationSchema = Yup.object({
@@ -120,10 +123,13 @@ function ComponentB() {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn btn-primary float-start mb-3"
                   disabled={!formik.isValid}
                 >
                   Submit
+                </button>
+                <button type="reset" className="btn btn-dark float-end mb-3">
+                  Reset
                 </button>
               </Form>
             );
