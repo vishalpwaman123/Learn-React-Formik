@@ -4,10 +4,11 @@ import ComponentB from "./components/ComponentB";
 import LogIn from "./components/LogIn";
 import FormikContainer from "./components/reusable/FormikContainer";
 import Registration from "./components/Registration";
+import EnrollmentForm from "./components/EnrollmentForm";
 function App() {
   return (
     <div className="App">
-      <Registration />
+      <EnrollmentForm />
     </div>
   );
 }
